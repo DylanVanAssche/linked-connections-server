@@ -70,9 +70,9 @@ def generateReport(results, numberOfRequests):
     print("\tVariance: {0} ms".format(round(variance(resultsResponseTime), ROUNDING)))
 
 # CSV exporting
-def generateCSV(data):
+def generateCSV(data, fileName):
     generateHeader("EXPORTING RESULTS AS CSV")
-    with open("results.csv", "w") as file:
+    with open(fileName, "w") as file:
         fields = ["url", "status", "response_time"]
         writer = csv.DictWriter(file, fields)
         writer.writeheader()
@@ -91,7 +91,8 @@ def main():
     parser.add_argument("-o", "--output", type=str, help="Export results to a given file in CSV format.")
     args = parser.parse_args()
     showIndividualResults = args.individual
-    exportAsCSV = args.output
+    exportAsCSV = len(args.output) > 0
+    csvFileName = args.output
     numberOfRequests = args.numberOfRequests
     url = args.url
     generateHeader("OPTIONS")
@@ -108,7 +109,7 @@ def main():
 
     # Export results as CSV if required
     if exportAsCSV:
-        generateCSV(results)
+        generateCSV(results, csvFileName)
 
     # Generate report
     generateReport(results, numberOfRequests)
