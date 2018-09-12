@@ -23,6 +23,7 @@
     "moment-timezone": "^0.5.21",
     "morgan": "~1.8.1",
     "serve-favicon": "^2.5.0",
+    "spdy": "^3.4.7",
     "through2": "^2.0.3",
     "unzipper": "^0.8.14",
     "winston": "^2.4.3"
