@@ -96,9 +96,9 @@ def main():
     numberOfRequests = args.numberOfRequests
     url = args.url
     generateHeader("OPTIONS")
-    print("\tShowing individual results: {0}".format(showIndividualResults))
-    print("\tExporting results as CSV: {0}".format(exportAsCSV))
-    print("\tNumber of requests: {0}".format(numberOfRequests))
+    print("Showing individual results: {0}".format(showIndividualResults))
+    print("Exporting results as CSV: {0}".format(exportAsCSV))
+    print("Number of requests: {0}".format(numberOfRequests))
 
     # Run benchmark
     results = runBenchmark(numberOfRequests, url)
