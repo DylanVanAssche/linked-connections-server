@@ -19,7 +19,7 @@ This report will take a look at separating both resources and let the client han
 
 In order to test this hypotheses, we modified the `page-finder.js` router in the `linked-connection-server`. We removed the data aggregation of the live and static data
 functions to speed up the response time. Both data resources are now available under the following URIs:
-- The static fragments are served under: `/company/connections/static?departureTime={ISO-date}`
+- The static fragments are served under: `/company/connections?departureTime={ISO-date}`
 - The live data is available at: `company/connections/live?departureTime={ISO-date}`
 
 ## Results
