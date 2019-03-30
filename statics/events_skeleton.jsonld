@@ -4,13 +4,16 @@
     "lc":"http://semweb.mmlab.be/ns/linkedconnections#",
     "hydra":"http://www.w3.org/ns/hydra/core#",
     "gtfs":"http://vocab.gtfs.org/terms#",
+    "sosa": "http://www.w3.org/ns/sosa#",
+    "Event": "sosa:Observation",
     "Connection":"lc:Connection",
+    "CancelledConnection":"lc:CancelledConnection",
     "arrivalTime": {
       "@id": "lc:arrivalTime",
       "@type": "xsd:dateTime"
     },
     "departureTime": {
-      "@id": "lc:departureTime", 
+      "@id": "lc:departureTime",
       "@type": "xsd:dateTime"
     },
     "arrivalStop": {
@@ -65,7 +68,7 @@
     }
   },
   "@id":"",
-  "@type":"hydra:PagedCollection",
+  "@type":"hydra:PartialCollectionView",
   "hydra:next":"",
   "hydra:previous":"",
   "hydra:search":{

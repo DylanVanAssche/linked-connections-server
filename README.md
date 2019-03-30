@@ -39,7 +39,13 @@ The Web Server does not provide any functionality by itself, it needs at least o
 
 - **storage:** This is the path that tells the server where to store and where to look for the data fragments, created from the different datasets. **This should not include a trailing slash**. Make sure you have enough disk space to store and process datasets.
 
-- **companyName:** Name of the transport company that provides a GTFS dataset feed.
+- **organization:** URI and name of the data publisher.
+
+- **keywords:** Related keywords for a given dataset. E.g. types of vehicles available.
+
+- **companyName:** Name of the transport company that provides the GTFS dataset feed.
+
+- **geographicArea:** Geonames URI that represents the geographic area served by the public transport provider.
 
 - **downloadUrl:** URL where the GTFS dataset feed can be downloaded.
 
@@ -64,42 +70,50 @@ The Web Server does not provide any functionality by itself, it needs at least o
 ```js
 {
     "storage": "/opt/linked-connections-data", //datasets storage path
+    "organization": {
+        "id": "https://...",
+        "name": "Organization name"
+    },
     "datasets":[
         {
             "companyName": "companyX",
-            "downloadUrl": "http://...",
-            "downloadOnLaunch": true,
-            "updatePeriod": "0 0 2 * * *", //every day at 2am
-            "fragmentSize": 400000, //400 Kb
+            "keywords": ["Keyword1", "Keyword2"],
+            "geographicArea": "http://sws.geonames.org/...", // Geo names URI
+            "downloadUrl": "https://...",
+            "downloadOnLaunch": false,
+            "updatePeriod": "0 0 3 * * *", //every day at 3 am
+            "fragmentSize": 50000, // 50 Kb
             "realTimeData": {
-                "downloadUrl": "http://...",
+                "downloadUrl": "https://...",
                 "updatePeriod": "*/30 * * * * *", //every 30s
-                "fragmentTimeSpan": 600, // 10 minutes
-                "compressionPeriod": "0 0 3 * * *" //every day at 3am
+                "fragmentTimeSpan": 600, // 600 seconds
+                "compressionPeriod": "0 0 3 * * *" // Every day at 3 am
             },
             "baseURIs": {
                 "stop": "http://example.org/stops/{stop_id}",
                 "route": "http://example.org/routes/{routes.route_id}",
-                "trip": "http://example.org/trips/{trips.trip_id}",
-                "connection:" 'http://example.org/connections/{connection.departureTime(YYYYMMDD)}{connection.departureStop}{trips.trip_id}'
+                "trip": "http://example.org/trips/{routes.route_id}/{trips.startTime(YYYYMMDD)}",
+                "connection:" 'http://example.org/connections/{routes.route_id}/{trips.startTime(YYYYMMDD)}{connection.departureStop}'
             }
         },
         {
             "companyName": "companyY",
+            "keywords": ["Keyword1", "Keyword2"],
+            "geographicArea": "http://sws.geonames.org/...", // Geo names URI
             "downloadUrl": "http://...",
             "downloadOnLaunch": false,
             "updatePeriod": "0 0 3 * * *", //every day at 3am
             "baseURIs": {
                 "stop": "http://example.org/stops/{stop_id}",
                 "route": "http://example.org/routes/{routes.route_id}",
-                "trip": "http://example.org/trips/{trips.trip_id}",
-                "connection:" 'http://example.org/connections/{connection.departureTime(YYYYMMDD)}{connection.departureStop}{trips.trip_id}'
+                "trip": "http://example.org/trips/{routes.route_id}/{trips.startTime(YYYYMMDD)}",
+                "connection:" 'http://example.org/connections/{routes.route_id}/{trips.startTime(YYYYMMDD)}{connection.departureStop}'
             }
         }
     ]
 }
 ```
-Note that for defining the URI templates you can use the entity `connection` which consists of a `departureStop`, `departureTime`, `arrivalStop` and an `arrivalTime`. Furthermore, if using any of the times you can define a specific format as shown in the previous example.
+Note that for defining the URI templates you can use the entity `connection` which consists of a `departureStop`, `departureTime`, `arrivalStop` and an `arrivalTime`. We have also noticed that using the start time of a trip (`trip.startTime`) is also a good practice to uniquely identify trips or even connections. If using any of the times variables you can define a specific format (see [here](https://www.w3.org/TR/NOTE-datetime)) as shown in the previous example.
 
 
 ## Run it
