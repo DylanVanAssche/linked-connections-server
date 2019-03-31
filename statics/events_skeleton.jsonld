@@ -53,34 +53,9 @@
     },
     "gtfs:NotAvailable": {
       "@type": "@id"
-    },
-    "hydra:next" : {
-      "@type":"@id"
-    },
-    "hydra:previous": {
-      "@type": "@id"
-    },
-    "hydra:property": {
-      "@type": "@id"
-    },
-    "hydra:variableRepresentation": {
-      "@type": "@id"
     }
   },
   "@id":"",
   "@type":"hydra:PartialCollectionView",
-  "hydra:next":"",
-  "hydra:previous":"",
-  "hydra:search":{
-    "@type":"hydra:IriTemplate",
-    "hydra:template":"",
-    "hydra:variableRepresentation":"hydra:BasicRepresentation",
-    "hydra:mapping":{
-        "@type":"IriTemplateMapping",
-        "hydra:variable":"departureTime",
-        "hydra:required":true,
-        "hydra:property":"lc:departureTimeQuery"
-      }
-  },
   "@graph":[]
 }
