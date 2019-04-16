@@ -1,0 +1,30 @@
+{
+    "storage": "/home/lc/linked-connections-server/data",
+    "organization": {
+        "id": "https://lc.dylanvanassche.be",
+        "name": "LC Dylan Van Assche"
+    },
+    "datasets":[
+        {
+            "companyName": "sncb",
+            "keywords": ["Train", "Stops"],
+            "geographicArea": "http://sws.geonames.org/2802361",
+            "downloadUrl": "https://sncb-opendata.hafas.de/gtfs/static/c21ac6758dd25af84cca5b707f3cb3de",
+            "downloadOnLaunch": true,
+            "updatePeriod": "0 0 3 * * *",
+            "fragmentSize": 50000,
+            "realTimeData": {
+                "downloadUrl": "https://sncb-opendata.hafas.de/gtfs/realtime/c21ac6758dd25af84cca5b707f3cb3de",
+                "updatePeriod": "*/30 * * * * *",
+                "fragmentTimeSpan": 600,
+                "compressionPeriod": "0 31 11 * * *"
+            },
+            "baseURIs": {
+                "stop": "http://irail.be/stations/NMBS/00{stop_id}",
+                "connection": "http://irail.be/connections/{routes.route_short_name}{trips.trip_short_name}/{trips.startTime(YYYYMMDD)}/{connection.departureStop}",
+                "trip": "http://irail.be/vehicle/{routes.route_short_name}{trips.trip_short_name}/{trips.startTime(YYYYMMDD)}",
+                "route": "http://irail.be/routes/{routes.route_short_name}{trips.trip_short_name}"
+            }
+        }
+    ]
+}
