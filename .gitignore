@@ -1,10 +1,7 @@
-*.gz
-*.zip
-datasets/
-linked_connections/
-linked_pages/
-real_time/
 node_modules/
+coverage
 package-lock.json
 datasets_config.json
 server_config.json
+.coveralls.yml
+ecosystem.config.js
