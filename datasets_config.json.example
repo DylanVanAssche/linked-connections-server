@@ -4,6 +4,7 @@
         "id": "https://example.org/your/URL",
         "name": "Data publisher name"
     },
+    "realTimeUpdateInterval": 30,
     "datasets":[
         {
             "companyName": "company x",
